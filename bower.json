@@ -1,10 +1,14 @@
 {
+
   "name": "angular",
   "version": "1.0.0",
   "homepage": "https://github.com/royschuyler/Angular-Addresses",
   "authors": [
     "royschuyler <royschuyler@yahoo.com>"
   ],
+
+
+  "main": "index.html",
   "license": "MIT",
   "ignore": [
     "**/.*",
