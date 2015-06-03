@@ -9,11 +9,10 @@ html(lang="en-US", ng-app="angularAddresses")
     link(rel="stylesheet" href="css/main.css")
   body(ng-controller="Main as main")
     .container
-      h1 AngularAddresses
       h2 Search
       input(placeholder="Search", ng-model="query")
-      h2 Addresses
-      table
+      .btn.btn-primary(data-toggle="modal", data-target="#modal") New Address
+      table.table.table-striped.table-bordered.table-hover
         thead
           tr
             th
@@ -33,7 +32,6 @@ html(lang="en-US", ng-app="angularAddresses")
               {{person.phone}}
             td: a(href="http://twitter.com/{{person.twitter}}", target="_blank")
               {{person.twitter}}
-      .btn.btn-primary(data-toggle="modal", data-target="#modal") New Address
       .modal.fade#modal
         .modal-dialog
           .modal-content
@@ -52,6 +50,9 @@ html(lang="en-US", ng-app="angularAddresses")
                 .form-group(ng-class="{'has-success': newAddressForm.t.$dirty && main.newPerson.twitter.length > 1 && main.newPerson.twitter[0] === '@' , 'has-error': newAddressForm.t.$dirty && (main.newPerson.twitter.length < 2 || main.newPerson.twitter[0] !== '@')}")
                   label.control-label Twitter
                   input.form-control(name="t", type="text", placeholder="@abc123", ng-model="main.newPerson.twitter", required)
+                .form-group(ng-class="{'has-success': newAddressForm.n.$dirty && main.newPerson.name.length > 1, 'has-error': newAddressForm.n.$dirty && !main.newPerson.name}")
+                  label.control-label Photo
+                  input.form-control(name="p", type="text", placeholder="http://img.jpg", ng-model="main.newPerson.photo", required)
             .modal-footer
               button.btn.btn-danger(data-dismiss="modal") Cancel
               button.btn.btn-primary(data-dismiss="modal", ng-click="newAddressForm.$valid && main.addNewAddress()", ng-disabled="newAddressForm.$invalid") Add Person to Address Book
